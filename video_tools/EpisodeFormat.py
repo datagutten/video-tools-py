@@ -27,6 +27,9 @@ class EpisodeFormat:
     date: Optional[datetime.date] = None
     """Episode date"""
 
+    def __str__(self):
+        return self.episode_name()
+
     @staticmethod
     def from_dict(data) -> 'EpisodeFormat':
         ep = EpisodeFormat()
