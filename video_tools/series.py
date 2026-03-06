@@ -9,7 +9,7 @@ def find_episodes(path: Path, extensions=None) -> dict[str, Path]:
     episodes = {}
     for episode in path.iterdir():
         if episode.is_dir():
-            episodes.update(find_episodes(episode))
+            episodes.update(find_episodes(episode, extensions))
         else:
             matches = re.search(r'(S\d+E\d+)', episode.name)
             if not matches:
