@@ -9,8 +9,8 @@ def normalize_track_name(track: MKVTrack):
     tags = []
     if track.track_name is None:
         track.track_name = ''
-    if track.language == 'nb':
-        track.language = 'no'
+    if track.language in ['nb', 'nob']:
+        track.language = 'nor'
 
     lang_obj_ietf = langcodes.get(track.language_ietf or track.language)
 
