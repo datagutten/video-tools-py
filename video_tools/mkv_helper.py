@@ -16,7 +16,8 @@ def normalize_track_name(track: MKVTrack):
 
     if track.track_name.find('Dub') == 0:
         tags.append('Dubtitle')
-    if re.search(r'[\[(]CC[)\]]', track.track_name) is not None or track.flag_hearing_impaired:
+    if track.track_name.find('SDH') > -1 or re.search(r'[\[(]CC[)\]]',
+                                                      track.track_name) is not None or track.flag_hearing_impaired:
         tags.append('SDH')
         track.flag_hearing_impaired = True
     if re.search(r'[\[(].*?original.*?[)\]]',
