@@ -11,12 +11,17 @@ def find_episodes(path: Path, extensions=None) -> dict[str, Path]:
         if episode.is_dir():
             episodes.update(find_episodes(episode, extensions))
         else:
-            matches = re.search(r'(S\d+E\d+)', episode.name, re.IGNORECASE)
-            if not matches:
-                continue
+            matches_x = re.search(r'(\d+)x(\d+)', episode.name)
+            if matches_x:
+                epnum = 'S%02dE%02d' % (int(matches_x.group(1)), int(matches_x.group(2)))
+            else:
+                matches = re.search(r'(S\d+E\d+)', episode.name)
+                if not matches:
+                    continue
+                epnum = matches.group(1)
             if extensions is not None and episode.suffix not in extensions:
                 continue
-            episodes[matches.group(1).upper()] = episode
+            episodes[epnum] = episode
     return episodes
 
 
