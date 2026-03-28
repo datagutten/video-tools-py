@@ -37,9 +37,11 @@ def normalize_track_name(track: MKVTrack):
                  track.track_name.lower()) is not None or track.flag_original:
         tags.append('Original')
         track.flag_original = True
-    if re.search(r'[\[(].*?forced.*?[)\]]', track.track_name.lower()) is not None or track.forced_track:
+    if ('Forced' in track.track_name or
+            re.search(r'[\[(].*?forced.*?[)\]]', track.track_name.lower()) is not None or
+            track.forced_track):
         tags.append('Forced')
-        track.force_track = True
+        track.forced_track = True
     if track.track_name.lower().find(
             'synstolking') > -1 or track.flag_visual_impaired or 'audio description' in track.track_name.lower():
         tags.append('Audio Description')
