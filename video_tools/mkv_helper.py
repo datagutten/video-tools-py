@@ -9,8 +9,21 @@ def normalize_track_name(track: MKVTrack):
     tags = []
     if track.track_name is None:
         track.track_name = ''
+    if track.language in ['es', 'spa'] and 'Latin American' in track.track_name:
+        track.language_ietf = 'es-419'
+    if track.language in ['fr', 'fre']:
+        if 'Canadian' in track.track_name:
+            track.language_ietf = 'fr-CA'
     if track.language in ['nb', 'nob']:
         track.language = 'nor'
+    if track.language in ['pt', 'por'] and 'Brazilian' in track.track_name:
+        track.language_ietf = 'pt-BR'
+
+    if track.language in ['zh', 'chi']:
+        if 'Traditional' in track.track_name:
+            track.language_ietf = 'zh-hant'
+        elif 'Simplified' in track.track_name:
+            track.language_ietf = 'zh-hans'
 
     lang_obj_ietf = langcodes.get(track.language_ietf or track.language)
 
