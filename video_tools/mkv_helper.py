@@ -16,6 +16,7 @@ def normalize_track_name(track: MKVTrack):
             track.language_ietf = 'fr-CA'
     if track.language in ['nb', 'nob']:
         track.language = 'nor'
+        track.language_ietf = 'no'
     if track.language in ['pt', 'por'] and 'Brazilian' in track.track_name:
         track.language_ietf = 'pt-BR'
 
