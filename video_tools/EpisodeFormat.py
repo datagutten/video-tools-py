@@ -28,9 +28,9 @@ class EpisodeFormat:
     def __str__(self):
         return self.episode_name()
 
-    @staticmethod
-    def from_dict(data) -> 'EpisodeFormat':
-        ep = EpisodeFormat()
+    @classmethod
+    def from_dict(cls, data):
+        ep = cls()
         for key, value in data.items():
             if hasattr(ep, key):
                 setattr(ep, key, value)
