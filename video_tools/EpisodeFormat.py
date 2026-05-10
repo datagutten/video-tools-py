@@ -97,6 +97,6 @@ class EpisodeFormat:
             folder = self.folder()
 
         if create_folder:
-            folder.mkdir(exist_ok=True)
+            folder.mkdir(exist_ok=True, parents=True)
 
         return folder.joinpath(self.file_name(extension))
