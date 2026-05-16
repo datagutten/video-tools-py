@@ -74,7 +74,7 @@ class EpisodeFormat:
             else:
                 return self.title
         else:
-            return name
+            return name or None
 
     def episode_name(self):
         # Prepend series name
