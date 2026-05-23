@@ -83,7 +83,7 @@ class EpisodeFormatTorrent(EpisodeFormat):
         value = re.sub(r'MPEG(\d)', r'MPEG-\1', value)
 
         codecs_disc_remux = ['MPEG-2', 'VC-1', 'AVC', 'HEVC']
-        codecs_web_untouched = ['H.264', ' H.265', ' VP9', 'MPEG-2']
+        codecs_web_untouched = ['H.264', 'H.265', ' VP9', 'MPEG-2']
         codecs_encode = ['x264', 'x265', 'AV1']
         codecs = codecs_disc_remux + codecs_web_untouched + codecs_encode
         if value not in codecs:
