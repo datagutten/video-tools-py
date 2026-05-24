@@ -36,13 +36,6 @@ class EpisodeFormat:
                 setattr(ep, key, value)
         return ep
 
-    @property
-    def _episode_prefix(self):
-        if self.season is not None:
-            return 'E'
-        else:
-            return 'EP'
-
     def series_name(self):
         if self.series is not None:  # Not part of a series
             if self.year is not None:
@@ -67,7 +60,7 @@ class EpisodeFormat:
     def episode_number(self, episode_name=True):
         name = self.season_format
         if self.episode is not None:
-            name += '%s%02d' % (self._episode_prefix, self.episode)
+            name += 'E%02d' % self.episode
         if self.title is not None and episode_name:
             if name:  # Append episode title
                 return '%s - %s' % (name, self.title)
