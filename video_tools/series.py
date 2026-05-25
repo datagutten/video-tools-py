@@ -28,3 +28,28 @@ def find_episodes(path: Path, extensions=None) -> dict[str, Path]:
 def parse_episode(episode_str: str):
     matches = re.search(r'S(\d+).?EP?(\d+)', episode_str, re.IGNORECASE)
     return int(matches.group(1)), int(matches.group(2))
+
+
+def find_subs(path: Path, extensions: list = None) -> dict[str, dict[str, Path]]:
+    """
+    Find subtitles and sort them by episode and language
+    """
+    if extensions is None:
+        extensions = ['.srt']
+    episodes = {}
+    for file in path.iterdir():
+        if not file.is_file() or file.suffix not in extensions:
+            continue
+        season, episode = parse_episode(file.name)
+        ep_num = 'S%02dE%02d' % (season, episode)
+        matches_lang = re.search(r'.+\.([a-z]{2})$', file.stem)
+        if ep_num not in episodes:
+            episodes[ep_num] = {}
+        if matches_lang:
+            lang = matches_lang.group(1)
+            episodes[ep_num][lang] = file
+            pass
+        else:
+            episodes[ep_num][None] = file
+
+    return episodes
