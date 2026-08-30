@@ -71,7 +71,10 @@ class EpisodeFormat:
 
     def episode_name(self):
         # Prepend series name
-        return ('%s %s' % (self.series_name(), self.episode_number())).strip()
+        if not self.season and not self.episode and self.title:
+            return f'{self.series_name()} - {self.title}'.strip()
+        else:
+            return ('%s %s' % (self.series_name(), self.episode_number())).strip()
 
     def file_name(self, extension=None) -> Path:
         file = Path(self.episode_name())
