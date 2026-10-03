@@ -77,7 +77,7 @@ class EpisodeFormat:
             return ('%s %s' % (self.series_name(), self.episode_number())).strip()
 
     def file_name(self, extension=None) -> Path:
-        file = Path(self.episode_name().replace(':', '').replace('/', '-'))
+        file = Path(self.episode_name().replace(':', '').replace('/', '-').replace('?', ''))
         if extension:
             return Path(str(file) + extension)
         else:
