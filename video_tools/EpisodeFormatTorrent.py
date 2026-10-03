@@ -62,13 +62,6 @@ class EpisodeFormatTorrent(EpisodeFormat):
         temp.title = None
         return Path(temp.torrent_format())
 
-    def file_name(self, extension=None) -> Path:
-        file = Path(self.episode_name().replace(':', ''))
-        if extension:
-            return Path(str(file) + extension)
-        else:
-            return file
-
     def __str__(self):
         return self.torrent_format()
 
