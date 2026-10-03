@@ -79,7 +79,7 @@ class EpisodeFormat:
     def file_name(self, extension=None) -> Path:
         file = Path(self.episode_name().replace(':', '').replace('/', '-'))
         if extension:
-            return file.with_suffix(extension)
+            return Path(str(file) + extension)
         else:
             return file
 
